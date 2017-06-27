@@ -1,35 +1,29 @@
-﻿using System;
-using System.Net;
-using System.Collections.Generic;
+﻿using System.Net;
 using RestSharp;
+// ReSharper disable InconsistentNaming
 
 namespace suggestionscsharp {
 
     public class SuggestClient {
-        const string SUGGESTIONS_URL = "{0}/suggest";
-        const string ADDRESS_RESOURCE = "address";
-        const string PARTY_RESOURCE = "party";
-        const string BANK_RESOURCE = "bank";
-        const string FIO_RESOURCE = "fio";
-        const string EMAIL_RESOURCE = "email";
+        private const string SUGGESTIONS_URL = "{0}/suggest";
+        private const string ADDRESS_RESOURCE = "address";
+        private const string PARTY_RESOURCE = "party";
+        private const string BANK_RESOURCE = "bank";
+        private const string FIO_RESOURCE = "fio";
+        private const string EMAIL_RESOURCE = "email";
 
-        RestClient client;
-        string token;
-        ContentType contentType = ContentType.JSON;
+        private readonly RestClient _client;
+        private readonly string _token;
+        private readonly ContentType _contentType = ContentType.JSON;
 
         public IWebProxy Proxy {
-            get { return client.Proxy; }
-            set { client.Proxy = value; }
+            get { return _client.Proxy; }
+            set { _client.Proxy = value; }
         }
-
-        static SuggestClient() {
-            // use SSL v3
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;
-        }
-
+        
         public SuggestClient(string token, string baseUrl) {
-            this.token = token;
-            this.client = new RestClient (String.Format (SUGGESTIONS_URL, baseUrl));
+            _token = token;
+            _client = new RestClient (string.Format (SUGGESTIONS_URL, baseUrl));
         }
 
         public SuggestAddressResponse QueryAddress(string address) {
@@ -74,14 +68,14 @@ namespace suggestionscsharp {
             return Execute<SuggestPartyResponse>(request, query);
         }
 
-        private T Execute<T>(RestRequest request, SuggestQuery query) where T : new() {
-            request.AddHeader("Authorization", "Token " + this.token);
-            request.AddHeader("Content-Type", contentType.Name);
-            request.AddHeader("Accept", contentType.Name);
-            request.RequestFormat = contentType.Format;
-            request.XmlSerializer.ContentType = contentType.Name;
+        private T Execute<T>(IRestRequest request, SuggestQuery query) where T : new() {
+            request.AddHeader("Authorization", "Token " + _token);
+            request.AddHeader("Content-Type", _contentType.Name);
+            request.AddHeader("Accept", _contentType.Name);
+            request.RequestFormat = _contentType.Format;
+            request.XmlSerializer.ContentType = _contentType.Name;
             request.AddBody(query);
-            var response = client.Execute<T>(request);
+            var response = _client.Execute<T>(request);
 
             if (response.ErrorException != null) {
                 throw response.ErrorException;

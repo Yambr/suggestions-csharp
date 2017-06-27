@@ -1,31 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using RestSharp;
+// ReSharper disable InconsistentNaming
 
 namespace suggestionscsharp {
 
     public sealed class ContentType {
-        readonly string name;
-        readonly DataFormat format;
+        public string Name { get; }
 
-        public string Name {
-            get { return this.name; }
-        }
-
-        public DataFormat Format {
-            get { return this.format; }
-        }
+        public DataFormat Format { get; }
 
         public static readonly ContentType JSON = new ContentType("application/json", DataFormat.Json);
         public static readonly ContentType XML = new ContentType("application/xml", DataFormat.Xml);
 
         private ContentType(string name, DataFormat format) {
-            this.name = name;
-            this.format = format;
+            Name = name;
+            Format = format;
         }
 
         public override string ToString () {
-            return name;
+            return Name;
         }
     }
 
@@ -132,7 +125,7 @@ namespace suggestionscsharp {
     public class AddressBound {
         public string value { get; set; }
         public AddressBound(string name) {
-            this.value = name;
+            value = name;
         }
     }
 

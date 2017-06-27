@@ -1,7 +1,11 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "suggestions-csharp", "suggestions-csharp.csproj", "{30BEACDE-1B2A-498A-AA8C-5C56A92EAB51}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestsSuggestions", "..\UnitTestsSuggestions\UnitTestsSuggestions.csproj", "{C5DCA003-6500-4336-BE73-8A66E156662F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,5 +17,12 @@ Global
 		{30BEACDE-1B2A-498A-AA8C-5C56A92EAB51}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{30BEACDE-1B2A-498A-AA8C-5C56A92EAB51}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{30BEACDE-1B2A-498A-AA8C-5C56A92EAB51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5DCA003-6500-4336-BE73-8A66E156662F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5DCA003-6500-4336-BE73-8A66E156662F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5DCA003-6500-4336-BE73-8A66E156662F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5DCA003-6500-4336-BE73-8A66E156662F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal
